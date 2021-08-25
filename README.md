@@ -1,7 +1,6 @@
 #Bandfran - README
 
-The purpose of this web application is to connect users to freeelancers in the music industry by connecting with them using this platform. Users can post their gigs and have metrics based on the services they may provide. 
-## Instructions:
+The purpose of this web application is to allow users to share their music interests via playlists and connecting their Spotify accounts on a unified platform. Users can connect to other individuals using the platform and share their playlists based on a mood matching algorithm, making new friends in the process! 
 
 ### Run locally:
 1. If you are running the project for the first time:
