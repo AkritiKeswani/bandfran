@@ -1,4 +1,4 @@
-#Bandfran - README
+# Bandfran - README
 
 The purpose of this web application is to allow users to share their music interests via playlists and connecting their Spotify accounts on a unified platform. Users can connect to other individuals using the platform and share their playlists based on a mood matching algorithm, making new friends in the process! 
 
