@@ -16,6 +16,6 @@ The purpose of this web application is to allow users to share their music inter
 3. If all the steps were done correctly, you should be able to run the following commands without any error:
     - ```python3 manage.py makemigrations```
     - ```python3 manage.py migrate```
-    - ```python3 manage.py runserver 0.0.0.0:8084```
+    - ```python3 manage.py runserver```
 4. If the commands are executed successfully, the project would serve locally at ```0.0.0.0:8084``` and should be accessible using your browser.
 5. <b>Note</b>: SQLite will be used in the development mode. We will be using a Postgres instance when we put it in prod. Don't worry about it for now. Everything will be handled by settings file.
