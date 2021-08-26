@@ -1,0 +1,193 @@
+<!doctype html>
+{% load static %}
+{% load crispy_forms_tags %}
+<html lang="en">
+<!-- Akriti Keswani -->
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>{{ page_name }}</title>
+    <meta content="A platform for finding COVID-19 related resource leads in India." name="description">
+    <meta content="covid,resources,india,oxygen,ventilator,icu,critical,help,hospitals,beds,contact,sources,link,safe"
+          name="keywords">
+    <meta content="Akriti Keswani" name="author">
+    <meta content="Welcome - Bandfran" property="og:title">
+
+    <!-- Favicons -->
+    <link rel="shortcut icon" type="image/x-icon" href='{% static 'img/favicon.png' %}'/>
+    <link rel="icon" type="image/x-icon" href='{% static 'img/favicon.png' %}'/>
+    <link rel="apple-touch-icon" type="image/x-icon" href='{% static 'img/favicon.png' %}'/>
+    <link rel="apple-touch-startup-image" type="image/x-icon" href='{% static 'img/favicon.png' %}'/>
+
+    <!-- FIREBASE -->
+    <script src="https://www.gstatic.com/firebasejs/ui/4.8.0/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.0/firebase-ui-auth.css"/>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+          rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link rel="stylesheet" href='{% static 'vendor/aos/aos.css' %}'/>
+    <link rel="stylesheet" href='{% static 'vendor/bootstrap/css/bootstrap.min.css' %}'/>
+    <link rel="stylesheet" href='{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}'/>
+    <link rel="stylesheet" href='{% static 'vendor/boxicons/css/boxicons.min.css' %}'/>
+    <link rel="stylesheet" href='{% static 'vendor/glightbox/css/glightbox.min.css' %}'/>
+    <link rel="stylesheet" href='{% static 'vendor/remixicon/remixicon.css' %}'/>
+    <link rel="stylesheet" href='{% static 'vendor/swiper/swiper-bundle.min.css' %}'/>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.0/firebase-ui-auth.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-grid.css">
+    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-theme-alpine.css">
+
+    <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/4.8.0/firebase-ui-auth.js"></script>
+
+    <!-- Template Main CSS File -->
+    <link rel="stylesheet" href='{% static 'css/style.css' %}'/>
+
+    {% block header %}
+    {% endblock %}
+</head>
+<body>
+{% block nav %}
+    <header id="header" class="fixed-top">
+        <div class="container d-flex align-items-center justify-content-between">
+
+            <!-- <h1 class="logo"><a href="/">Helping Hand</a></h1> -->
+            <!-- Uncomment below if you prefer to use an image logo -->
+            {#            <a href="/" class="logo"><img src='{% static 'img/favicon.png' %}' width="50px" height="120px" alt="logo" class="img-fluid"></a>#}
+            <a href="/" class="navbar-brand">
+                <!-- Logo Image -->
+<!--                <img src='{% static 'img/favicon.png' %}' width="60" height="60" alt="logo"-->
+<!--                     class="d-inline-block align-middle mr-2">-->
+                <!-- Logo Text -->
+                <span class="text-uppercase font-weight-bold">BandFran</span>
+            </a>
+
+            {% if logged_in %}
+                <nav id="navbar" class="navbar">
+                    <ul>
+                        <li><span class="nav-link text-lg-left"><b>Hello {{ first_name }}</b></span></li>
+                        <li><a class="getstarted scrollto bg-danger" href="{% url 'signout' %}">Sign Out</a></li>
+                    </ul>
+                    <i class="bi bi-list mobile-nav-toggle"></i>
+                </nav><!-- .navbar -->
+            {% else %}
+                <nav id="navbar" class="navbar">
+                    <ul>
+                        <li><a class="nav-link scrollto" href="{% url 'index' %}#hero">Home</a></li>
+                        <li><a class="nav-link getstarted scrollto" href="{% url 'signin' %}">Sign In</a></li>
+                    </ul>
+                    <i class="bi bi-list mobile-nav-toggle"></i>
+                </nav><!-- .navbar -->
+            {% endif %}
+        </div>
+    </header><!-- End Header -->
+{% endblock %}
+
+<main id="main">
+    {% block content %}
+        <!-- ======= Hero Section ======= -->
+        <style>
+            .card {
+                background-color: #fff;
+                border-radius: 10px;
+                border: none;
+                position: relative;
+                margin-bottom: 30px;
+                box-shadow: 0 0.46875rem 2.1875rem rgba(90, 97, 105, 0.1), 0 0.9375rem 1.40625rem rgba(90, 97, 105, 0.1), 0 0.25rem 0.53125rem rgba(90, 97, 105, 0.12), 0 0.125rem 0.1875rem rgba(90, 97, 105, 0.1);
+            }
+
+            .l-bg-cherry {
+                background: linear-gradient(to right, #493240, #f09) !important;
+                color: #fff;
+            }
+
+            .l-bg-blue-dark {
+                background: linear-gradient(to right, #a86008, #ffba56) !important;
+                color: #fff;
+            }
+
+            .l-bg-green-dark {
+                background: linear-gradient(to right, #09203F, #537895) !important;
+                color: #fff;
+            }
+
+            .card .card-statistic-3 .card-icon-large .fas, .card .card-statistic-3 .card-icon-large .far, .card .card-statistic-3 .card-icon-large .fab, .card .card-statistic-3 .card-icon-large .fal {
+                font-size: 110px;
+            }
+
+            .card .card-statistic-3 .card-icon {
+                text-align: center;
+                line-height: 50px;
+                margin-left: 15px;
+                color: #000;
+                position: absolute;
+                right: -5px;
+                top: 20px;
+                opacity: 0.1;
+            }
+        </style>
+    {% endblock %}
+</main>
+
+{% block script %}
+{% endblock %}
+
+<section id="contact"></section>
+{% if not logged_in %}
+    <footer id="footer">
+        <div class="container d-md-flex py-4">
+            <div class="me-md-auto text-center text-md-start">
+                <div class="copyright">
+                    &copy; Copyright 2021. All Rights Reserved by <strong><span><a href="/"
+                                                                                   target="_blank">Band Fran</a></span></strong>.
+                </div>
+            </div>
+            <div class="credits text-center text-md-right pt-3 pt-md-0">
+                <!-- All the links in the footer should remain intact. -->
+                <!-- You can delete the links only if you purchased the pro version. -->
+                <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/onepage-multipurpose-bootstrap-template/ -->
+                Designed by <a href="https://bootstrapmade.com/" target="_blank">BootstrapMade</a>
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+{% else %}
+    <footer class="page-footer font-small border-top" style="margin-top: 20px; color: black;">
+        <div class="footer-copyright text-center py-3">
+            &copy; Copyright 2021. All Rights Reserved by <strong><span><a href="https://www.lifenest.io"
+                                                                           target="_blank" style="color: black;"><u>Akriti Keswani</u></a></span></strong>.
+        </div>
+    </footer>
+{% endif %}
+
+{#    <footer class="page-footer font-small border-top" style="margin-top: 20px; color: gray;">#}
+{#        <div class="footer-copyright text-center py-3">#}
+{#            Copyright &copy; 2021. All Rights Reserved by <a href="https://vivekkhimani.github.io"><strong><span><b>Akriti Keswani</b>.</span></strong></a>#}
+{#        </div>#}
+{#    </footer>#}
+
+<!-- Vendor JS Files -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+        integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+<script src="{% static 'vendor/aos/aos.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'vendor/glightbox/js/glightbox.min.js' %}"></script>
+<script src="{% static 'vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+<script src="{% static 'vendor/php-email-form/validate.js' %}"></script>
+<script src="{% static 'vendor/purecounter/purecounter.js' %}"></script>
+<script src="{% static 'vendor/swiper/swiper-bundle.min.js' %}"></script>
+
+<!-- Template Main JS File -->
+<script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>
