@@ -124,6 +124,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIR = [os.path.join(BASE_DIR, '../static/')]
 
+STATIC_ROOT = "/home/akritikeswani/bandfran/bandfran_app/static"
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
