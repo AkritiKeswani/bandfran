@@ -1,0 +1,31 @@
+{% extends 'bandfran/base.html' %}
+
+{% load static %}
+
+{% block header %}
+    <link rel="stylesheet" href='{% static 'css/non_auth_forms_style.css' %}'/>
+{% endblock %}
+
+{% block content %}
+    <section class="align-items-center" style="margin-top: 20px;">
+        <div class="wrapper rounded bg-white">
+            <h2>
+                Great music taste!
+            </h2> 
+            <p>From your spotify account, we observe the following statistics - </p>
+            <ul>
+                <li>You like pop around {{ stats.pop }}%.</li>
+                <li>Your music is unique across accounts by {{ stats.unique }}%.</li>
+                <li>Your artists are similar to {{ stats.users }} other users.</li>
+            </ul>
+            <h2>
+                Match
+            </h2>
+            <p>Based on this, our algorithm has matched you with the following user -</p>
+            <ul>
+                <li>Name = {{ stats.user_name }}</li>
+                <li>Name = {{ stats.user_email }}</li>
+            </ul>
+        </div>
+    </section>
+{% endblock %}

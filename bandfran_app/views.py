@@ -5,6 +5,12 @@ from django.db import transaction
 from django.shortcuts import render, redirect
 from django.views.decorators.debug import sensitive_post_parameters, sensitive_variables
 from django.contrib.auth.forms import AuthenticationForm
+from urllib.request import urlopen
+from urllib.parse import urlencode
+from .functionality import populate_stats
+from django.contrib.auth import get_user_model
+
+
 
 from .forms import MyUserCreationForm
 
@@ -52,7 +58,7 @@ def participant_signin(request):
         return redirect('index')
 
     if request.method == 'POST':
-        authentication_form = AuthenticationForm(request.POST or None)
+        authentication_form = AuthenticationForm(data = request.POST or None)
 
         if authentication_form.is_valid():
             username = authentication_form.cleaned_data.get('username')
@@ -67,10 +73,22 @@ def participant_signin(request):
         authentication_form = AuthenticationForm(request.POST or None)
 
     return render(request, 'bandfran/login.html',
-                  {'page_name': 'Life Nest | Sign In', 'authentication': authentication_form})
+                  {'page_name': 'Band Fran | Sign In', 'authentication': authentication_form})
 
 
 @login_required
 def participant_signout(request):
     logout(request)
     return redirect('index')
+
+@login_required
+def participant_callback(request):
+    return redirect('connect')
+
+def participant_connect(request):
+    stats = {}
+    User = get_user_model()
+    users = User.objects.values()
+    stats = populate_stats(stats, users)
+    return render(request, 'bandfran/connect.html',
+                  {'page_name': 'Band Fran | Connect', 'stats' : stats})

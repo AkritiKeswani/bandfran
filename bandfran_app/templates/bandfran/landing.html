@@ -2,10 +2,16 @@
 
 {% load static %}
 
+{% block header %}
+    <link rel="stylesheet" href='{% static 'css/non_auth_forms_style.css' %}'/>
+{% endblock %}
+
 {% block content %}
     <section class="align-items-center" style="margin-top: 20px;">
-        <div class="wrapper rounded bg-white">
-            <p>You're logged in!</p>
+        <div class="wrapper rounded bg-white" style="text-align: center;">
+            <a href="https://accounts.spotify.com/authorize?client_id=c3937559bd9046a8b5f95fe53123440b&response_type=code&redirect_uri=http%3A%2F%2F127.0.0.1%3A8000%2Fcallback%2F&scope=user-read-private%20user-read-email">
+                <img src="{% static 'img/spotify_img.png' %}" style="max-width: 80%;">
+            </a>
         </div>
     </section>
 {% endblock %}
