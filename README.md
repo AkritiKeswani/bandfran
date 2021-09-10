@@ -1,9 +1,9 @@
 # Bandfran - README
 
-The purpose of this web application is to allow users to share their music interests via playlists and connecting their Spotify accounts on a unified platform. Users can connect to other individuals using the platform and share their playlists based on a mood matching algorithm, making new friends in the process! 
+The purpose of this web application is to allow users to share their music interests via playlists and connecting their Spotify accounts on a unified platform. Users can connect, or esssentially "match" with other individuals using the platform and share their playlists based on a mood matching algorithm, making new friends in the process! 
 
 ### Run locally:
-1. If you are running the project for the first time:
+1. If you are running the project for the first time: 
     - Make sure you have ```python3``` installed.
     - Create a virtual environment using: ```python3 -m venv bandfran_env```.
     - Run: ```source bandfran_env/bin/activate``` to activate the virtual environment.
